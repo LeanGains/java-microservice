@@ -1,0 +1,16 @@
+ Build artifacts
+target/
+out/
+*.class
+bin/
+
+# IDE specific files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# System files
+.DS_Store
+```
