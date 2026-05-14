@@ -12,11 +12,14 @@ import com.rewards.service.mock.MockEligibilityService;
 
 import java.util.EnumSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
 /**
  * Example application demonstrating the usage of the RewardsService.
  */
 public class RewardsApplication {
+    
+    private static final Logger LOGGER = Logger.getLogger(RewardsApplication.class.getName());
     
     public static void main(String[] args) {
         // Create an instance of the EligibilityService (using the mock implementation)
@@ -46,18 +49,18 @@ public class RewardsApplication {
             Customer customer = new Customer("EL12345", portfolio);
             Set<Reward> rewards = rewardsService.getEligibleRewards(customer);
             
-            System.out.println("Eligible customer rewards:");
+            LOGGER.info("Eligible customer rewards:");
             if (rewards.isEmpty()) {
-                System.out.println("  No rewards available");
+                LOGGER.info("  No rewards available");
             } else {
                 for (Reward reward : rewards) {
-                    System.out.println("  " + reward);
+                    LOGGER.info("  " + reward);
                 }
             }
         } catch (InvalidAccountNumberException e) {
-            System.out.println("Error with eligible customer: " + e.getMessage());
+            LOGGER.warning("Error with eligible customer: " + e.getMessage());
         }
-        System.out.println();
+        LOGGER.info("");
     }
     
     private static void demonstrateIneligibleCustomer(RewardsService rewardsService, Portfolio portfolio) {
@@ -65,18 +68,18 @@ public class RewardsApplication {
             Customer customer = new Customer("IN12345", portfolio);
             Set<Reward> rewards = rewardsService.getEligibleRewards(customer);
             
-            System.out.println("Ineligible customer rewards:");
+            LOGGER.info("Ineligible customer rewards:");
             if (rewards.isEmpty()) {
-                System.out.println("  No rewards available");
+                LOGGER.info("  No rewards available");
             } else {
                 for (Reward reward : rewards) {
-                    System.out.println("  " + reward);
+                    LOGGER.info("  " + reward);
                 }
             }
         } catch (InvalidAccountNumberException e) {
-            System.out.println("Error with ineligible customer: " + e.getMessage());
+            LOGGER.warning("Error with ineligible customer: " + e.getMessage());
         }
-        System.out.println();
+        LOGGER.info("");
     }
     
     private static void demonstrateTechnicalFailure(RewardsService rewardsService, Portfolio portfolio) {
@@ -84,18 +87,18 @@ public class RewardsApplication {
             Customer customer = new Customer("TF12345", portfolio);
             Set<Reward> rewards = rewardsService.getEligibleRewards(customer);
             
-            System.out.println("Technical failure customer rewards:");
+            LOGGER.info("Technical failure customer rewards:");
             if (rewards.isEmpty()) {
-                System.out.println("  No rewards available");
+                LOGGER.info("  No rewards available");
             } else {
                 for (Reward reward : rewards) {
-                    System.out.println("  " + reward);
+                    LOGGER.info("  " + reward);
                 }
             }
         } catch (InvalidAccountNumberException e) {
-            System.out.println("Error with technical failure customer: " + e.getMessage());
+            LOGGER.warning("Error with technical failure customer: " + e.getMessage());
         }
-        System.out.println();
+        LOGGER.info("");
     }
     
     private static void demonstrateInvalidAccountNumber(RewardsService rewardsService, Portfolio portfolio) {
@@ -103,18 +106,18 @@ public class RewardsApplication {
             Customer customer = new Customer("IV12345", portfolio);
             Set<Reward> rewards = rewardsService.getEligibleRewards(customer);
             
-            System.out.println("Invalid account number customer rewards:");
+            LOGGER.info("Invalid account number customer rewards:");
             if (rewards.isEmpty()) {
-                System.out.println("  No rewards available");
+                LOGGER.info("  No rewards available");
             } else {
                 for (Reward reward : rewards) {
-                    System.out.println("  " + reward);
+                    LOGGER.info("  " + reward);
                 }
             }
         } catch (InvalidAccountNumberException e) {
-            System.out.println("Error with invalid account customer: " + e.getMessage());
-            System.out.println("  " + e.getMessage());
+            LOGGER.warning("Error with invalid account customer: " + e.getMessage());
+            LOGGER.warning("  " + e.getMessage());
         }
-        System.out.println();
+        LOGGER.info("");
     }
 }

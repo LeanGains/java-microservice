@@ -11,8 +11,10 @@ public interface EligibilityService {
      * 
      * @param accountNumber The customer's account number
      * @return The eligibility status of the customer
-     * @throws TechnicalFailureException when a technical failure occurs
-     * @throws InvalidAccountNumberException when the provided account number is invalid
+     * @throws TechnicalFailureException
+     *     when a technical failure occurs
+     * @throws InvalidAccountNumberException
+     *     when the provided account number is invalid
      */
     EligibilityStatus checkEligibility(String accountNumber) 
             throws TechnicalFailureException, InvalidAccountNumberException;

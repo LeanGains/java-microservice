@@ -16,17 +16,14 @@ public final class StringReverser {
     }
 
     /**
-     * Reverses the characters of the given string.
-     *
-     * <p>Edge case behaviour:</p>
-     * <ul>
-     *   <li>A {@code null} input throws {@link IllegalArgumentException}.</li>
-     *   <li>An empty string returns an empty string.</li>
-     *   <li>A single-character string returns that same string unchanged.</li>
-     * </ul>
+     * Reverses the characters of the given string. Edge case behaviour:
+     * {@code null} input throws {@link IllegalArgumentException}, an empty
+     * string returns an empty string, and a single-character string returns
+     * that same string unchanged.
      *
      * @param input the string to reverse; must not be {@code null}
-     * @return a new string whose characters are in reverse order relative to {@code input}
+     * @return a new string whose characters are in reverse order relative to
+     *         {@code input}
      * @throws IllegalArgumentException if {@code input} is {@code null}
      */
     public static String reverse(final String input) {

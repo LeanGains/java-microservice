@@ -6,8 +6,10 @@ import com.rewards.service.InvalidAccountNumberException;
 import com.rewards.service.TechnicalFailureException;
 
 /**
- * A mock implementation of the EligibilityService interface for testing purposes.
- * This implementation simulates different responses based on account number patterns.
+ * A mock implementation of the EligibilityService interface
+ * for testing purposes.
+ * This implementation simulates different responses based on
+ * account number patterns.
  */
 public class MockEligibilityService implements EligibilityService {
     
