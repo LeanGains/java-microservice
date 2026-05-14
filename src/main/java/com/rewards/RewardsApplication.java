@@ -113,7 +113,6 @@ public class RewardsApplication {
             }
         } catch (InvalidAccountNumberException e) {
             System.out.println("Error with invalid account customer: " + e.getMessage());
-            System.out.println("  " + e.getMessage());
         }
         System.out.println();
     }
