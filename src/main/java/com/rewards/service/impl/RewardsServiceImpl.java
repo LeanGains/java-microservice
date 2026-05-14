@@ -19,8 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Implementation of the RewardsService that determines which rewards customers are eligible for
- * based on their channel subscriptions.
+ * Implementation of the RewardsService that determines which rewards
+ * customers are eligible for based on their channel subscriptions.
  */
 public class RewardsServiceImpl implements RewardsService {
     
@@ -83,7 +83,8 @@ public class RewardsServiceImpl implements RewardsService {
     }
     
     /**
-     * Determines the rewards for an eligible customer based on their channel subscriptions.
+     * Determines the rewards for an eligible customer based on their
+     * channel subscriptions.
      * 
      * @param portfolio The customer's portfolio of channel subscriptions
      * @return The set of rewards the customer is eligible for
