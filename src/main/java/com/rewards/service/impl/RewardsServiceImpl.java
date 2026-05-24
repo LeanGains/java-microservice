@@ -11,10 +11,10 @@ import com.rewards.service.RewardsService;
 import com.rewards.service.TechnicalFailureException;
 
 import java.util.Collections;
-import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,9 +24,18 @@ import java.util.logging.Logger;
  */
 public class RewardsServiceImpl implements RewardsService {
     
+    /**
+     * Logger used for operational and diagnostic messages within this service.
+     */
     private static final Logger LOGGER = Logger.getLogger(RewardsServiceImpl.class.getName());
     
+    /**
+     * Service dependency responsible for determining customer eligibility status.
+     */
     private final EligibilityService eligibilityService;
+    /**
+     * Immutable mapping of subscribed channels to the rewards they unlock.
+     */
     private final Map<Channel, Reward> channelRewardMap;
     
     /**
@@ -45,7 +54,7 @@ public class RewardsServiceImpl implements RewardsService {
      * @return A map of channels to their corresponding rewards
      */
     private Map<Channel, Reward> initializeChannelRewardMap() {
-        Map<Channel, Reward> map = new EnumMap<>(Channel.class);
+        Map<Channel, Reward> map = new ConcurrentHashMap<>();
         map.put(Channel.SPORTS, Reward.CHAMPIONS_LEAGUE_FINAL_TICKET);
         map.put(Channel.MUSIC, Reward.KARAOKE_PRO_MICROPHONE);
         map.put(Channel.MOVIES, Reward.PIRATES_OF_THE_CARIBBEAN_COLLECTION);
@@ -72,11 +81,15 @@ public class RewardsServiceImpl implements RewardsService {
                 return Collections.emptySet();
             }
         } catch (TechnicalFailureException e) {
-            LOGGER.log(Level.WARNING, "Technical failure while checking eligibility for account: " + accountNumber, e);
+            if (LOGGER.isLoggable(Level.WARNING)) {
+                LOGGER.log(Level.WARNING, "Technical failure while checking eligibility for account: " + accountNumber, e);
+            }
             // Return empty set on technical failure
             return Collections.emptySet();
         } catch (InvalidAccountNumberException e) {
-            LOGGER.log(Level.WARNING, "Invalid account number provided: " + accountNumber, e);
+            if (LOGGER.isLoggable(Level.WARNING)) {
+                LOGGER.log(Level.WARNING, "Invalid account number provided: " + accountNumber, e);
+            }
             // Rethrow the exception to notify client of invalid account
             throw e;
         }
