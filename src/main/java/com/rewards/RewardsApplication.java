@@ -12,6 +12,7 @@ import com.rewards.service.mock.MockEligibilityService;
 
 import java.util.EnumSet;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -49,16 +50,24 @@ public class RewardsApplication {
             Customer customer = new Customer("EL12345", portfolio);
             Set<Reward> rewards = rewardsService.getEligibleRewards(customer);
             
-            LOGGER.info("Eligible customer rewards:");
+            if (LOGGER.isLoggable(Level.INFO)) {
+                LOGGER.info("Eligible customer rewards:");
+            }
             if (rewards.isEmpty()) {
-                LOGGER.info("  No rewards available");
+                if (LOGGER.isLoggable(Level.INFO)) {
+                    LOGGER.info("  No rewards available");
+                }
             } else {
-                for (Reward reward : rewards) {
-                    LOGGER.info("  " + reward);
+                if (LOGGER.isLoggable(Level.INFO)) {
+                    for (Reward reward : rewards) {
+                        LOGGER.info("  " + reward);
+                    }
                 }
             }
         } catch (InvalidAccountNumberException e) {
-            LOGGER.warning("Error with eligible customer: " + e.getMessage());
+            if (LOGGER.isLoggable(Level.WARNING)) {
+                LOGGER.warning("Error with eligible customer: " + e.getMessage());
+            }
         }
         LOGGER.info("");
     }
@@ -68,7 +77,9 @@ public class RewardsApplication {
             Customer customer = new Customer("IN12345", portfolio);
             Set<Reward> rewards = rewardsService.getEligibleRewards(customer);
             
-            LOGGER.info("Ineligible customer rewards:");
+            if (LOGGER.isLoggable(Level.INFO)) {
+                LOGGER.info("Ineligible customer rewards:");
+            }
             if (rewards.isEmpty()) {
                 LOGGER.info("  No rewards available");
             } else {
@@ -87,7 +98,9 @@ public class RewardsApplication {
             Customer customer = new Customer("TF12345", portfolio);
             Set<Reward> rewards = rewardsService.getEligibleRewards(customer);
             
-            LOGGER.info("Technical failure customer rewards:");
+            if (LOGGER.isLoggable(Level.INFO)) {
+                LOGGER.info("Technical failure customer rewards:");
+            }
             if (rewards.isEmpty()) {
                 LOGGER.info("  No rewards available");
             } else {
@@ -116,7 +129,9 @@ public class RewardsApplication {
             }
         } catch (InvalidAccountNumberException e) {
             LOGGER.warning("Error with invalid account customer: " + e.getMessage());
-            LOGGER.warning("  " + e.getMessage());
+            if (LOGGER.isLoggable(Level.WARNING)) {
+                LOGGER.warning("  " + e.getMessage());
+            }
         }
         LOGGER.info("");
     }
