@@ -14,8 +14,14 @@ import com.rewards.service.TechnicalFailureException;
 public class MockEligibilityService implements EligibilityService {
     
     private static final String ELIGIBLE_PREFIX = "EL";
+    /**
+     * Prefix used by the mock to simulate an ineligible customer response.
+     */
     private static final String INELIGIBLE_PREFIX = "IN";
     private static final String TECHNICAL_FAILURE_PREFIX = "TF";
+    /**
+     * Prefix used by the mock to simulate an invalid account number scenario.
+     */
     private static final String INVALID_ACCOUNT_PREFIX = "IV";
     
     @Override
